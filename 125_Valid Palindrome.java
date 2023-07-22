@@ -28,6 +28,8 @@
 // 1 <= s.length <= 2 * 105
 // s consists only of printable ASCII characters.
 
+
+//Solution 1
 class Solution {
     public boolean isPalindrome(String s) {
         if (s.isEmpty()) {
@@ -51,5 +53,30 @@ class Solution {
         	}
         }
         return true;
+    }
+}
+
+//Solution 2
+class Solution {
+    public boolean isPalindrome(String s) {
+
+        s=s.toLowerCase();
+        s= s.replaceAll("\\s", "");
+        s= s.replaceAll("[`~;!\"'@#$%^&_+*.,:;\\\\/\\[\\]{}()<>?=-]", "");
+
+        int i= s.length()-1;
+        String temp="";
+        
+        while(i>=0){
+            temp= temp+ s.charAt(i);
+            i--;
+        }
+
+        if(s.equals(temp)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
