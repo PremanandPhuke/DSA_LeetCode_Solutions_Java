@@ -13,6 +13,7 @@ The repository is organized into folders, with each folder containing solutions 
 
 - Array
 - String
+- Stack
 - Linked List
 - Tree
 - Graph
