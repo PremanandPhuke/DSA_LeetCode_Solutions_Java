@@ -45,6 +45,7 @@
 // 0 <= nums[i] <= 50
 // 0 <= val <= 100
 
+//Solution 1
 class Solution {
     public int removeElement(int[] nums, int val) {
         
@@ -62,5 +63,19 @@ class Solution {
         }
 
         return i;
+    }
+}
+
+//Solution 2
+class Solution {
+    public int removeElement(int[] nums, int val) {
+    int k = 0; // Number of elements not equal to val
+    for (int i = 0; i < nums.length; i++) {
+        if (nums[i] != val) {
+            nums[k] = nums[i]; // Move non-val elements to the front
+            k++; // Increment k for each non-val element
+        }
+    }
+    return k;
     }
 }
