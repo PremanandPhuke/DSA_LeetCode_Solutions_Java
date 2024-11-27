@@ -42,6 +42,7 @@
 // -100 <= nums[i] <= 100
 // nums is sorted in non-decreasing order.
 
+//Solution 1
 class Solution {
     public int removeDuplicates(int[] nums) {
         int no, dup;
@@ -58,5 +59,30 @@ class Solution {
             count++;
         }
         return count;
+    }
+}
+
+//Solution 2 : Two pointer approach
+class Solution {
+    public int removeDuplicates(int[] nums) {
+
+     // if the array is null
+        if(nums.length==0){
+            return 0;
+        }
+
+        int index=1;// Pointer to the next unique element
+
+        for(int i=1; i<nums.length; i++){
+
+            if(nums[i] != nums[i-1]){// check if the current element is unique
+                nums[index]=nums[i];// if yes then place it to the next position
+                index++;
+            }
+        }
+
+        return index; // no of unique elements
+
+
     }
 }
