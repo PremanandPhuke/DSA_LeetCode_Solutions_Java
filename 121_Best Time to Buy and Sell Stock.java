@@ -24,22 +24,66 @@
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
 
-
+// Solution 1: Brute Force
+// In this approach, we check every possible pair of days to find the maximum profit.
 class Solution {
     public int maxProfit(int[] prices) {
-        int lsf = Integer.MAX_VALUE;
-        int op = 0;
-        int pist = 0;
-        
-        for(int i = 0; i < prices.length; i++){
-            if(prices[i] < lsf){
-                lsf = prices[i];
+        int n=prices.length;
+        int profit=0;
+        int temp=0;
+
+        for(int i=0; i<n-1; i++){
+            
+            for(int j=i+1; j<n; j++){
+                temp= prices[j]-prices[i];
+                if(temp>profit){
+                    profit=temp;
+                }
             }
-            pist = prices[i] - lsf;
-            if(op < pist){
-                op = pist;
-            }
+
         }
-        return op;
+
+        return profit;
     }
 }
+
+// Solution 2: Optimized Solution (Track Minimum Price)
+// Here, we track the minimum price seen so far and calculate the profit for every day, updating the maximum profit.
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;  // Initialize with the highest possible value
+        int maxProfit = 0;  // Initialize profit to 0
+
+        for (int price : prices) {
+            // Update the minimum price encountered so far
+            if (price < minPrice) {
+                minPrice = price;
+            } 
+            // Calculate the profit if selling at the current price
+            else if (price - minPrice > maxProfit) {
+                maxProfit = price - minPrice;
+            }
+        }
+        return maxProfit;  // Return the maximum profit found
+    }
+}
+
+
+// Solution 3: Single-Pass Solution with Improved Readability
+// This is a streamlined version of the optimized approach.
+class Solution{
+    public int maxProfit(int[] prices) {
+    int minPrice = prices[0]; // Assume the first price as the minimum
+    int maxProfit = 0;
+
+    for (int i = 1; i < prices.length; i++) {
+        maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+        minPrice = Math.min(minPrice, prices[i]);
+    }
+
+    return maxProfit;
+}
+
+}
+
+
