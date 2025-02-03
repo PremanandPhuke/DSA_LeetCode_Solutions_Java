@@ -17,6 +17,50 @@
 // Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 
 class Solution {
+    public void setZeroes(int[][] matrix) {
+        int l = matrix.length;
+        int b = matrix[0].length;
+
+        // creating new array and coping all elements from orginal aray
+        int[][] arr = new int[l][b];
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < b; j++) {
+                arr[i][j] = matrix[i][j];
+            }
+        }
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < b; j++) {
+                if (matrix[i][j] == 0) {
+                    // if i found 0 in OG array then i will send thode index and make changes in
+                    // copied array
+                    makeZero(i, j, arr);
+                }
+            }
+        }
+        //copy the changes to the original array
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < b; j++) {
+                matrix[i][j] = arr[i][j];
+            }
+        }
+    }
+    //make changes in copied array according to index 
+    protected void makeZero(int row, int col, int[][] arr) {
+
+        for (int i = 0; i < arr[0].length; i++) {
+            arr[row][i] = 0;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i][col] = 0;
+        }
+    }
+
+}
+
+
+
+class Solution {
             public static int[][] check(int [][] matrix, int row, int col, int len1, int len2){
             for(int x=0; x<len1; x++){
                 matrix[x][col]=0;
@@ -52,8 +96,5 @@ class Solution {
                 }
             }
         }
-
-
-        
     }
 }
