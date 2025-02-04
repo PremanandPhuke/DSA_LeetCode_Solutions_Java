@@ -22,6 +22,46 @@
 // 1 <= n <= 300
 // nums[i] is either 0, 1, or 2.
 
+//Brute Force (Bubble Sort)
+class Solution {
+    public void sortColors(int[] nums) {
+        // Arrays.sort(nums);
+        int n= nums.length;
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n-i-1; j++){
+
+                if(nums[j]>nums[j+1]){
+                    int temp=nums[j];
+                    nums[j]=nums[j+1];
+                    nums[j+1]=temp;
+                }
+            }
+        }
+    }
+}
+
+//Better (Counting Sort)
+class Solution {
+    public void sortColors(int[] nums) {
+        int count0 = 0, count1 = 0, count2 = 0;
+
+        // Count occurrences of 0, 1, and 2
+        for (int num : nums) {
+            if (num == 0) count0++;
+            else if (num == 1) count1++;
+            else count2++;
+        }
+
+        // Overwrite the array
+        int index = 0;
+        while (count0-- > 0) nums[index++] = 0;
+        while (count1-- > 0) nums[index++] = 1;
+        while (count2-- > 0) nums[index++] = 2;
+       
+    }
+}
+
 
 class Solution {
     public void sortColors(int[] nums) {
