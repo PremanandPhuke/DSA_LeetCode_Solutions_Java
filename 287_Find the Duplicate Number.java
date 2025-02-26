@@ -31,6 +31,34 @@
 // 1 <= nums[i] <= n
 // All the integers in nums appear only once except for precisely one integer which appears two or more times.
 
+
+// Cycle Sort
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int n= nums.length;
+        int i=0;
+
+        while(i<n){
+            int index= nums[i]-1;
+            if(nums[i] != nums[index]){
+                swap(nums, i, index);
+            }
+            else{
+                i++;
+            }
+        }
+
+        return nums[n-1];
+    }
+
+    private void swap(int [] arr, int first, int second){
+        int temp = arr[first];
+        arr[first] = arr[second];
+        arr[second] = temp;
+    }
+}
+
+
 //Brute
 class Solution {
     public int findDuplicate(int[] nums) {
