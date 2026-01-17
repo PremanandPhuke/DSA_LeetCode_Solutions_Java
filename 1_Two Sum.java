@@ -50,3 +50,16 @@ class Solution {
         return ans;
     }
 }
+
+// try below for better performance and less time 
+        for (int i = n - 1; i > 0; i--) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (nums[i] + nums[j] == target) {
+                    ans[0] = j;
+                    ans[1] = i;
+                    return ans; // exit immediately
+                }
+            }
+        }
+
+        return ans;
