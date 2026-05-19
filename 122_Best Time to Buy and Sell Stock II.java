@@ -34,18 +34,48 @@
 
 class Solution {
     public int maxProfit(int[] prices) {
-        
-        int x= prices[0];
-        int profit=0;
 
-        for(int i : prices){
-            if( i < x){
-                x= i;
+        int profit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+
+            // If today's price is higher than yesterday
+            if (prices[i] > prices[i - 1]) {
+
+                profit += prices[i] - prices[i - 1];
             }
-            else{
-                profit=profit + (i - x);
-                x= i;
+        }
+
+        return profit;
+    }
+}
+
+/// Another alternative 
+
+class Solution {
+    public int maxProfit(int[] prices) {
+
+        int i = 0;
+        int profit = 0;
+        int n = prices.length;
+
+        while (i < n - 1) {
+
+            // Find smallest buying amount
+            while (i < n - 1 && prices[i] >= prices[i + 1]) {
+                i++;
             }
+
+            int buy = prices[i];
+
+            // Find maximum selling  amount
+            while (i < n - 1 && prices[i] <= prices[i + 1]) {
+                i++;
+            }
+
+            int sell = prices[i];
+
+            profit += sell - buy;
         }
 
         return profit;
